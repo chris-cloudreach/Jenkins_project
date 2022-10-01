@@ -37,41 +37,76 @@
 // }
 
 
+// pipeline {
+//     agent any
+//     options {
+//         skipStagesAfterUnstable()
+//     }
+//     stages {
+//          stage('Clone repository') { 
+//             steps { 
+//                 script{
+//                 checkout scm
+//                 }
+//             }
+//         }
+
+//         stage('Build') { 
+//             steps { 
+//                 script{
+//                  app = docker.build("Jenkins_project")
+//                 }
+//             }
+//         }
+//         stage('Test'){
+//             steps {
+//                  echo 'Empty'
+//             }
+//         }
+//         stage('Deploy') {
+//             steps {
+//                 script{
+//                         docker.withRegistry('https://registry.hub.docker.com', 'dockerhubcred') {
+//                     app.push("${env.BUILD_NUMBER}")
+//                     app.push("latest")
+//                     }
+//                 }
+//             }
+//         }
+//     }
+// }
+
 pipeline {
-    agent any
-    options {
-        skipStagesAfterUnstable()
+    agent any 
+    environment {
+    DOCKERHUB_CREDENTIALS = credentials('dockerhubcred')
     }
-    stages {
-         stage('Clone repository') { 
-            steps { 
-                script{
-                checkout scm
-                }
+    stages { 
+        stage('SCM Checkout') {
+            steps{
+            git 'https://github.com/chris-cloudreach/Jenkins_project.git'
             }
         }
 
-        stage('Build') { 
-            steps { 
-                script{
-                 app = docker.build("Jenkins_project")
-                }
+        stage('Build docker image') {
+            steps {  
+                sh 'docker build -t chriscloudreach/newnode:$BUILD_NUMBER .'
             }
         }
-        stage('Test'){
-            steps {
-                 echo 'Empty'
+        stage('login to dockerhub') {
+            steps{
+                sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
             }
         }
-        stage('Deploy') {
-            steps {
-                script{
-                        docker.withRegistry('https://registry.hub.docker.com', 'dockerhubcred') {
-                    app.push("${env.BUILD_NUMBER}")
-                    app.push("latest")
-                    }
-                }
+        stage('push image') {
+            steps{
+                sh 'docker push chriscloudreach/newnode:$BUILD_NUMBER'
             }
+        }
+}
+post {
+        always {
+            sh 'docker logout'
         }
     }
 }
