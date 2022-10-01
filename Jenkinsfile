@@ -66,7 +66,7 @@ pipeline {
         stage('Deploy') {
             steps {
                 script{
-                        docker.withRegistry('https://registry.hub.docker.com', '72721166-66d4-44f1-a089-bd019768e82b') {
+                        docker.withRegistry('https://registry.hub.docker.com', 'dockerhubcred') {
                     app.push("${env.BUILD_NUMBER}")
                     app.push("latest")
                     }
