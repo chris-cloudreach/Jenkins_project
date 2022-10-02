@@ -1,9 +1,5 @@
 pipeline {
-  agent {
-     node { 
-        label '"slave Server"'
-        } 
-  }
+  agent any
   stages {
     stage('Checkout Scm') {
       steps {
