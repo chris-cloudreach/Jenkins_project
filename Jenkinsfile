@@ -1,11 +1,7 @@
 pipeline {
   agent any
   stages {
-    stage('Checkout Scm') {
-      steps {
-        git 'https://github.com/chris-cloudreach/Jenkins_project.git'
-      }
-    }
+   
 
     stage('Shell script 0') {
       steps {
