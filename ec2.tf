@@ -112,6 +112,6 @@ resource "aws_instance" "my_slave_server" {
 
 
     tags = {
-    Name = "slave Server"
+    Name = "Slave Server"
   }
 }
