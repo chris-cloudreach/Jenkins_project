@@ -100,3 +100,18 @@ resource "aws_instance" "my_public_server" {
     Name = "Jenkins Server"
   }
 }
+
+resource "aws_instance" "my_slave_server" {
+    ami = data.aws_ami.my_aws_ami.id
+    instance_type = var.instance_type
+    key_name = aws_key_pair.ec2_keypair.key_name
+    subnet_id = module.network.public_subnet_a_id
+    vpc_security_group_ids = [ aws_security_group.my_app_sg.id ]
+
+    user_data = "${file("nodeinstall.sh")}"
+
+
+    tags = {
+    Name = "slave Server"
+  }
+}
