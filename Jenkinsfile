@@ -14,6 +14,7 @@ pipeline {
     stage('Shell script 0') {
       steps {
         sh '''
+rm -rf ./Jenkins_project
 git clone https://github.com/chris-cloudreach/Jenkins_project.git
 ls -al
 cat /home/ubuntu/Jenkins_project/Website/index.html
