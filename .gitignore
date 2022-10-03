@@ -4,6 +4,8 @@
 # .tfstate files
 *.tfstate
 *.tfstate.*
+agent.jar
+
 
 # Crash log files
 crash.log

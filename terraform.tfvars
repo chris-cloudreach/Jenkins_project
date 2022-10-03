@@ -15,3 +15,4 @@ private_a_cidr = "10.0.21.0/24"
 
 # Instances
 keypair_name = "ta-lab-key"
+my_ip = "86.15.241.215"
