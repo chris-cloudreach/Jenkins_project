@@ -14,6 +14,7 @@ pipeline {
     stage('Shell script 0') {
       steps {
         sh '''
+sudo docker container rm -f $(sudo docker ps -a -q)
 rm -rf ./Jenkins_project
 git clone https://github.com/chris-cloudreach/Jenkins_project.git
 ls -al
