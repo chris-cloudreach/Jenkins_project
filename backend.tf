@@ -6,3 +6,7 @@
       
 #   }
 # }
+
+# sudo docker container rm -f $(sudo docker ps -a -q)
+# rm -rf ./Jenkins_project
+# echo "REMOVED OLD JENKINS GIT PROJECT"
