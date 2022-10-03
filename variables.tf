@@ -4,6 +4,12 @@ variable "vpc_cidr" {
   type        = string
 }
 
+
+variable "SlaveServerpublicIp" {
+  description = "The CIDR of jenkins slave server"
+  type        = string
+}
+
 variable "region" {
   description = "Default region for our VPC"
   type        = string

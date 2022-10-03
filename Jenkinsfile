@@ -15,14 +15,14 @@ pipeline {
       steps {
         sh '''
 CNAME=pswebsite
-if [ "$(docker ps -qa -f name=$CNAME)" ]; then
+if [ "$(sudo docker ps -qa -f name=$CNAME)" ]; then
     echo ":: Found container - $CNAME"
-    if [ "$(docker ps -q -f name=$CNAME)" ]; then
+    if [ "$(sudo docker ps -q -f name=$CNAME)" ]; then
         echo ":: Stopping running container - $CNAME"
-        docker stop $CNAME;
+        sudo docker container stop $CNAME;
     fi
     echo ":: Removing stopped container - $CNAME"
-    docker rm $CNAME;
+    sudo docker rm $CNAME;
 fi
 rm -rf ./Jenkins_project
 git clone https://github.com/chris-cloudreach/Jenkins_project.git
