@@ -55,7 +55,10 @@ variable "keypair_name" {
   type        = string
 }
 
-
+variable "my_ip" {
+   description = "My IP address"
+   type = string
+}
 
 variable "user_arn" {
   default ="arn:aws:iam::314045000409:user/chrisOGB"
@@ -76,5 +79,4 @@ variable rotation_enabled {
 variable kms_alias {
   default = "CWLogKey"
 }
-
 

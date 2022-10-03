@@ -9,7 +9,7 @@ resource "aws_security_group" "my_app_sg" {
     from_port   = 22
     to_port     = 22
     protocol    = "tcp"
-    cidr_blocks = ["86.15.241.215/32"]
+    cidr_blocks = ["${var.my_ip}/32"]
   }
 
   ingress {
@@ -17,7 +17,31 @@ resource "aws_security_group" "my_app_sg" {
     from_port   = 8080
     to_port     = 8080
     protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
+    cidr_blocks = ["${var.my_ip}/32"]
+  }
+
+   ingress {
+    description = "for jenkins from vpc"
+    from_port   = 8080
+    to_port     = 8080
+    protocol    = "tcp"
+    cidr_blocks = ["${var.vpc_cidr}"]
+  }
+
+   ingress {
+    description = "for jenkins from github 1"
+    from_port   = 8080
+    to_port     = 8080
+    protocol    = "tcp"
+    cidr_blocks = ["140.82.112.0/20"]
+  }
+
+    ingress {
+    description = "for jenkins from github 2"
+    from_port   = 8080
+    to_port     = 8080
+    protocol    = "tcp"
+    cidr_blocks = ["192.30.252.0/22"]
   }
 
   ingress {
@@ -25,7 +49,7 @@ resource "aws_security_group" "my_app_sg" {
     from_port   = 22
     to_port     = 22
     protocol    = "tcp"
-    cidr_blocks = ["192.168.0.0/16"]
+    cidr_blocks = ["10.0.0.0/16"]
   }
 
   ingress {
@@ -85,6 +109,33 @@ resource "local_file" "ssh_key" {
   content = tls_private_key.example.private_key_pem
 }
 
+# Creating an Elastic IP called jenkins_eip
+resource "aws_eip" "jenkins_eip" {
+   # Attaching it to the jenkins_server EC2 instance
+   instance = aws_instance.my_public_server.id
+
+   # Making sure it is inside the VPC
+   vpc      = true
+
+   # Setting the tag Name to jenkins_eip
+   tags = {
+      Name = "jenkins_eip"
+   }
+}
+
+resource "aws_eip" "jenkins_slave_eip" {
+   # Attaching it to the jenkins_server EC2 instance
+   instance = aws_instance.my_slave_server.id
+
+   # Making sure it is inside the VPC
+   vpc      = true
+
+   # Setting the tag Name to jenkins_eip
+   tags = {
+      Name = "jenkins_slave_eip"
+   }
+}
+
 # EC2 - PUBLIC
 resource "aws_instance" "my_public_server" {
     ami = data.aws_ami.my_aws_ami.id
@@ -101,34 +152,6 @@ resource "aws_instance" "my_public_server" {
   }
 }
 
-resource "aws_iam_role" "SlaveServerRole" {
-  assume_role_policy = <<POLICY
-{
-  "Statement": [
-    {
-      "Action": "sts:AssumeRole",
-      "Effect": "Allow",
-      "Principal": {
-        "Service": "ec2.amazonaws.com"
-      }
-    }
-  ],
-  "Version": "2012-10-17"
-}
-POLICY
-
-
-  managed_policy_arns = ["arn:aws:iam::aws:policy/CloudWatchLogsFullAccess",]
-  max_session_duration = "3600"
-  name                 = "SlaveServerRole"
-}
-
-resource "aws_iam_instance_profile" "ec2_instanceprofile" {
-  name = "ec2_instanceprofile"
-  role = "${aws_iam_role.SlaveServerRole.name}"
-}
-
-
 resource "aws_instance" "my_slave_server" {
     ami = data.aws_ami.my_aws_ami.id
     instance_type = var.instance_type
@@ -137,7 +160,6 @@ resource "aws_instance" "my_slave_server" {
     vpc_security_group_ids = [ aws_security_group.my_app_sg.id ]
 
     iam_instance_profile = "${aws_iam_instance_profile.ec2_instanceprofile.name}"
-
 
     user_data = "${file("nodeinstall.sh")}"
 
