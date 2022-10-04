@@ -21,7 +21,7 @@
       .App-header {
         position: relative;
         background-color: #fe414d;
-        height: 180px;
+        height: 100px;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -49,7 +49,6 @@ input:valid {
 
   <body>
     <div class="App-header">
-      <img class="wordmark" src="https://www.publicissapient.com/content/dam/ps-rebrand/brand/ps-logo-NEW.svg" alt="PS logo">
       <h1>Landing Zone Details</h1>
     </div>
     
@@ -60,7 +59,7 @@ input:valid {
     
     <form method="POST">
       <div class="form-group">
-        <label for="email">Email address</label>
+        <label for="email">Customer Email</label>
         <input type="email" class="form-control" id="email"  placeholder="Enter email" required>
         <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
       </div>
@@ -71,14 +70,14 @@ input:valid {
       </div> 
 
       <div class="form-group">
-        <label for="name">Sharedservices Account</label>
-        <input type="name" class="form-control" id="AccountNumber" placeholder="Enter 12-digit Sharedservices AWS Account Number" required pattern="^[0-9]{12}$">
-      </div>  
+        <label for="name">AFT Account</label>
+        <input type="name" class="form-control" id="aft_acct" placeholder="Enter 12-digit AFT AWS Account Number" required pattern="^[0-9]{12}$">
+      </div> 
 
       <div class="form-group">
-        <label for="name">External Id</label>
-        <input type="name" class="form-control" id="ext_id"  placeholder="Enter external id" required>
-      </div>  
+        <label for="name">Sharedservices Account</label>
+        <input type="name" class="form-control" id="AccountNumber" placeholder="Enter 12-digit Sharedservices AWS Account Number" required pattern="^[0-9]{12}$">
+      </div>   
 
       <div class="form-group">
         <label for="name">CIDR</label>
@@ -91,26 +90,15 @@ input:valid {
       </div> 
       <!-- ^(([0-9]){1,3}\.){3}[0-9]{1,3}\/[1-2][0-8]$ -->
       <div class="form-group">
-        <label for="name">VPC Region</label>
+        <label for="name">Deployment Region</label>
         <input type="name" class="form-control" id="region" placeholder="Only small letters and hyphen allowed E.g. us-east-1" required pattern="^(us|eu|ap|ca|me|sa)-[a-z]*-[1-3]{1}$">
       </div> 
+
       <div class="form-group">
-        <label for="name">VPC Name</label>
-        <input type="name" class="form-control" id="vpcname"  placeholder="Enter VPC Name" required>
-      </div> 
-      <div class="form-group">
-        <label for="name">Env</label>
-        <input type="name" class="form-control" id="env"  placeholder="Eg dev, prod. Only a-z0-9_- allowed" required pattern="^[a-z0-9_-]*$">
-      </div>
-      <div class="form-group">
-        <label for="name">Customer Gateway IP</label>
+        <label for="name">On-prem Gateway IP</label>
         <input type="name" class="form-control" id="cgwIP"  placeholder="Enter ip address (not cidr)" required pattern="^(([0-9]){1,3}\.){3}[0-9]{1,3}$">
       </div>
 
-      <div class="form-group">
-        <label for="name">AFT Account</label>
-        <input type="name" class="form-control" id="aft_acct" placeholder="Enter 12-digit AFT AWS Account Number" required pattern="^[0-9]{12}$">
-      </div> 
 
       <h4 id="response"></h4>
       <button type="submit" class="btn btn-primary">Submit</button>
