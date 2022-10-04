@@ -57,34 +57,34 @@ variable "keypair_name" {
 }
 
 variable "my_ip" {
-   description = "My IP address"
-   type = string
+  description = "My IP address"
+  type        = string
 }
 
 variable "SlaveServerPublicip" {
-   description = "My SlaveServerPublicip address"
-   type = string
+  description = "My SlaveServerPublicip address"
+  type        = string
 }
 
 
 
 variable "user_arn" {
-  default ="arn:aws:iam::314045000409:user/chrisOGB"
+  default = "arn:aws:iam::314045000409:user/chrisOGB"
 }
 
-variable key_spec {
+variable "key_spec" {
   default = "SYMMETRIC_DEFAULT"
 }
 
-variable enabled {
+variable "enabled" {
   default = true
 }
 
-variable rotation_enabled {
+variable "rotation_enabled" {
   default = true
 }
 
-variable kms_alias {
+variable "kms_alias" {
   default = "CWLogKey"
 }
 

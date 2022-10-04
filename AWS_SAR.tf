@@ -4,10 +4,10 @@ resource "aws_serverlessapplicationrepository_cloudformation_stack" "serverless-
 
   capabilities = [
     "CAPABILITY_IAM",
-   
+
   ]
   parameters = {
-    ValidatedEmail     = "christopher.ogbunuzor@cloudreach.com"
+    ValidatedEmail = "christopher.ogbunuzor@cloudreach.com"
   }
 }
 

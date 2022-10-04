@@ -1,8 +1,8 @@
 resource "aws_kms_key" "my_kms_key" {
-  description         = "My KMS Keys for Data Encryption"
+  description              = "My KMS Keys for Data Encryption"
   customer_master_key_spec = var.key_spec
   is_enabled               = var.enabled
-  enable_key_rotation      = var.rotation_enabled  
+  enable_key_rotation      = var.rotation_enabled
 
   tags = {
     Name = "my_kms_key"
@@ -92,10 +92,10 @@ resource "aws_kms_alias" "my_kms_alias" {
 
 resource "aws_cloudwatch_log_group" "slaveserverDockerLogGroup" {
   name = "slaveserverDockerLogGroup"
-#   kms_key_id = aws_kms_key.my_kms_key.id [I DO NOT HAVE KMS READ PERMISSION]
+  #   kms_key_id = aws_kms_key.my_kms_key.id [I DO NOT HAVE KMS READ PERMISSION]
 
   tags = {
     Environment = "dev"
-    
+
   }
 }

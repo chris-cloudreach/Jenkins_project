@@ -15,12 +15,12 @@ resource "aws_iam_role" "SlaveServerRole" {
 POLICY
 
 
-  managed_policy_arns = ["arn:aws:iam::aws:policy/CloudWatchLogsFullAccess",]
+  managed_policy_arns  = ["arn:aws:iam::aws:policy/CloudWatchLogsFullAccess", ]
   max_session_duration = "3600"
   name                 = "SlaveServerRole"
 }
 
 resource "aws_iam_instance_profile" "ec2_instanceprofile" {
   name = "ec2_instanceprofile"
-  role = "${aws_iam_role.SlaveServerRole.name}"
+  role = aws_iam_role.SlaveServerRole.name
 }

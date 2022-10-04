@@ -1,6 +1,9 @@
-output "ec2_instance_ip" {
- value = aws_instance.my_public_server.public_ip
-  # value = aws_instance.my
+output "Jenkins_Server_ip" {
+  value = aws_instance.my_public_server.public_ip
+}
+
+output "Slave_Server_ip" {
+  value = aws_instance.my_slave_server.public_ip
 }
 
 

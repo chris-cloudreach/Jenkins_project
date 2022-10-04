@@ -18,7 +18,7 @@ resource "aws_config_configuration_recorder" "foo" {
   name     = "config-recorder"
   role_arn = aws_iam_role.r.arn
 
-   recording_group {
+  recording_group {
     all_supported                 = true
     include_global_resource_types = true
   }
@@ -26,13 +26,13 @@ resource "aws_config_configuration_recorder" "foo" {
 
 resource "aws_config_delivery_channel" "my-config" {
   name           = "config-example"
-  s3_bucket_name = "${aws_s3_bucket.my-config-bucket.bucket}"
+  s3_bucket_name = aws_s3_bucket.my-config-bucket.bucket
 
   depends_on = [aws_config_configuration_recorder.foo]
 }
 
 resource "aws_config_configuration_recorder_status" "config" {
-  name       = "${aws_config_configuration_recorder.foo.name}"
+  name       = aws_config_configuration_recorder.foo.name
   is_enabled = true
 
   depends_on = [aws_config_delivery_channel.my-config]
@@ -59,6 +59,6 @@ POLICY
 }
 
 resource "aws_iam_role_policy_attachment" "my-config-pol-attach" {
-  role       = "${aws_iam_role.r.name}"
+  role       = aws_iam_role.r.name
   policy_arn = "arn:aws:iam::aws:policy/service-role/AWSConfigRole"
 }

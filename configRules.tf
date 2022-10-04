@@ -6,13 +6,13 @@ resource "aws_config_config_rule" "VPC_SG_OPEN_ONLY_TO_AUTHORIZED_PORTS" {
     source_identifier = "VPC_SG_OPEN_ONLY_TO_AUTHORIZED_PORTS"
   }
 
-    input_parameters = <<EOF
+  input_parameters = <<EOF
 {
   "authorizedTcpPorts": "443"
 }
 EOF
 
- scope {
+  scope {
     compliance_resource_types = ["AWS::EC2::SecurityGroup"]
   }
 
@@ -27,7 +27,7 @@ resource "aws_config_config_rule" "cloud_trail_enabled" {
     owner             = "AWS"
     source_identifier = "CLOUD_TRAIL_ENABLED"
   }
-    scope {
+  scope {
     compliance_resource_types = []
   }
 
@@ -49,17 +49,17 @@ resource "aws_config_config_rule" "s3_bucket_versioning_enabled" {
 }
 
 resource "aws_config_config_rule" "dynamodb-table-encryption-enabled" {
-  name = "dynamodb-table-encryption-enabled"
+  name        = "dynamodb-table-encryption-enabled"
   description = "A config rule that checks whether the Amazon DynamoDB tables are encrypted and checks their status. The rule is COMPLIANT if the status is enabled or enabling."
 
   source {
-    owner = "AWS"
+    owner             = "AWS"
     source_identifier = "DYNAMODB_TABLE_ENCRYPTION_ENABLED"
   }
   scope {
     compliance_resource_types = ["AWS::DynamoDB::Table"]
   }
-    depends_on = [aws_config_configuration_recorder.foo]
+  depends_on = [aws_config_configuration_recorder.foo]
 
 }
 

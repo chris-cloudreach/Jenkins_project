@@ -5,10 +5,10 @@ resource "aws_cloudtrail" "mytrail" {
   s3_bucket_name                = aws_s3_bucket.cloudtrailbucket.id
   s3_key_prefix                 = "dockerapplicationTrail"
   include_global_service_events = false
-  enable_log_file_validation = true
+  enable_log_file_validation    = true
 
   depends_on = [aws_s3_bucket_policy.cloudtrailbucket-policy]
-#   kms_key_id = aws_kms_key.my_kms_key.key_id
+  #   kms_key_id = aws_kms_key.my_kms_key.key_id
 }
 
 resource "aws_s3_bucket" "cloudtrailbucket" {
