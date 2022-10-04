@@ -36,13 +36,14 @@ resource "aws_security_group" "my_app_sg" {
     cidr_blocks = ["140.82.112.0/20"]
   }
 
-     ingress {
-    description = "for jenkins from Slave Server"
-    from_port   = 8080
-    to_port     = 8080
-    protocol    = "tcp"
-    cidr_blocks = ["${var.SlaveServerpublicIp}/32"]
-  }
+
+  #    ingress {
+  #   description = "for jenkins from Slave Server"
+  #   from_port   = 8080
+  #   to_port     = 8080
+  #   protocol    = "tcp"
+  #   cidr_blocks = ["${var.SlaveServerPublicip}/32"]
+  # }
 
     ingress {
     description = "for jenkins from github 2"

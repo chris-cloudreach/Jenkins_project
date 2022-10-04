@@ -4,10 +4,9 @@ resource "aws_serverlessapplicationrepository_cloudformation_stack" "serverless-
 
   capabilities = [
     "CAPABILITY_IAM",
-    "CAPABILITY_RESOURCE_POLICY",
+   
   ]
   parameters = {
-    # functionName = "func-postgres-rotator"
     ValidatedEmail     = "christopher.ogbunuzor@cloudreach.com"
   }
 }
