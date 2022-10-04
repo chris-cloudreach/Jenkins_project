@@ -3,9 +3,11 @@ data "aws_caller_identity" "current" {}
 resource "aws_cloudtrail" "mytrail" {
   name                          = "dockerapplicationTrail"
   s3_bucket_name                = aws_s3_bucket.cloudtrailbucket.id
-  s3_key_prefix                 = "prefix"
+  s3_key_prefix                 = "dockerapplicationTrail"
   include_global_service_events = false
   enable_log_file_validation = true
+
+  depends_on = [aws_s3_bucket_policy.cloudtrailbucket-policy]
 #   kms_key_id = aws_kms_key.my_kms_key.key_id
 }
 
@@ -44,7 +46,7 @@ resource "aws_s3_bucket_policy" "cloudtrailbucket-policy" {
               "Service": "cloudtrail.amazonaws.com"
             },
             "Action": "s3:PutObject",
-            "Resource": "${aws_s3_bucket.cloudtrailbucket.arn}/prefix/AWSLogs/${data.aws_caller_identity.current.account_id}/*",
+            "Resource": "${aws_s3_bucket.cloudtrailbucket.arn}/dockerapplicationTrail/AWSLogs/${data.aws_caller_identity.current.account_id}/*",
             "Condition": {
                 "StringEquals": {
                     "s3:x-amz-acl": "bucket-owner-full-control"
@@ -54,4 +56,6 @@ resource "aws_s3_bucket_policy" "cloudtrailbucket-policy" {
     ]
 }
 POLICY
+
+
 }
