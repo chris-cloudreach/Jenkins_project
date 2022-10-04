@@ -28,14 +28,14 @@ resource "aws_config_delivery_channel" "my-config" {
   name           = "config-example"
   s3_bucket_name = "${aws_s3_bucket.my-config-bucket.bucket}"
 
-  depends_on = ["aws_config_configuration_recorder.foo"]
+  depends_on = [aws_config_configuration_recorder.foo]
 }
 
 resource "aws_config_configuration_recorder_status" "config" {
   name       = "${aws_config_configuration_recorder.foo.name}"
   is_enabled = true
 
-  depends_on = ["aws_config_delivery_channel.my-config"]
+  depends_on = [aws_config_delivery_channel.my-config]
 }
 
 resource "aws_iam_role" "r" {

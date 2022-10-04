@@ -16,7 +16,7 @@ EOF
     compliance_resource_types = ["AWS::EC2::SecurityGroup"]
   }
 
-  depends_on = ["aws_config_configuration_recorder.foo"]
+  depends_on = [aws_config_configuration_recorder.foo]
 }
 
 
@@ -31,7 +31,7 @@ resource "aws_config_config_rule" "cloud_trail_enabled" {
     compliance_resource_types = []
   }
 
-  depends_on = ["aws_config_configuration_recorder.foo"]
+  depends_on = [aws_config_configuration_recorder.foo]
 }
 
 resource "aws_config_config_rule" "s3_bucket_versioning_enabled" {
@@ -45,7 +45,7 @@ resource "aws_config_config_rule" "s3_bucket_versioning_enabled" {
     compliance_resource_types = ["AWS::S3::Bucket"]
   }
 
-  depends_on = ["aws_config_configuration_recorder.foo"]
+  depends_on = [aws_config_configuration_recorder.foo]
 }
 
 resource "aws_config_config_rule" "dynamodb-table-encryption-enabled" {
@@ -59,7 +59,7 @@ resource "aws_config_config_rule" "dynamodb-table-encryption-enabled" {
   scope {
     compliance_resource_types = ["AWS::DynamoDB::Table"]
   }
-    depends_on = ["aws_config_configuration_recorder.foo"]
+    depends_on = [aws_config_configuration_recorder.foo]
 
 }
 
