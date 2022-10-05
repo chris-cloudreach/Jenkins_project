@@ -1,7 +1,7 @@
 # terraform {
 #   backend "s3"{
-#       bucket = "my-first-lambdabucket-194694014750"
-#       key = "sprint3/week6/ec2-ansible/terraform.tfstate"
+#       bucket = "my-tfstates-bucket-194694014750"
+#       key = "PS_task/terraform.tfstate"
 #       dynamodb_table = "terraform-lock"
 
 #   }
