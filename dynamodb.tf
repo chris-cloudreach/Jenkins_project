@@ -1,10 +1,12 @@
+# UNCOMMENT TO IMPORT DYNAMODY CREATED BY AWS_SAR.tf
+
 # data "aws_dynamodb_table" "tableName" {
 #   name = "chrisdyna"
 # }
 
 # resource "aws_dynamodb_table" "store" {
-#   name             = "chrisdyna"
-#   hash_key         = "lockid"
+#   name             = "table name"
+#   hash_key         = "partition key"
 #   billing_mode     = "PROVISIONED"
 # #   stream_enabled   = true
 # #   stream_view_type = "NEW_AND_OLD_IMAGES"
