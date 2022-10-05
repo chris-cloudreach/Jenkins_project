@@ -65,10 +65,14 @@ resource "aws_config_config_rule" "dynamodb-table-encryption-enabled" {
 
 resource "null_resource" "complianceCheckForLogs" {
 
+   triggers = {
+    always_run = "${timestamp()}"
+  }
+
   provisioner "local-exec" {
     # check if logs from docker container are pushed to CWLogs
-    command = "aws logs describe-log-streams --log-group-name slaveserverDockerLogGroup --region eu-west-1 | jq"
-
+    command = "./bashscript.sh"
+    
 }
 
 }

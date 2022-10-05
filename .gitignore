@@ -4,6 +4,9 @@ terraform.tfstate
 **/.terraform/*
 terraform*
 .DS_Store
+CWLogStreams.txt
+*.txt
+
 
 
 
