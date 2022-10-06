@@ -5,7 +5,8 @@
 *.tfstate
 *.tfstate.*
 agent.jar
-CWLogStreams.txt
+*.txt
+*.json
 
 
 # Crash log files
