@@ -1,10 +1,10 @@
 resource "aws_s3_bucket" "my-config-bucket" {
   bucket = "config-bucket-for-my-test-project-12345"
-  acl    = "private"
+ 
 
-  lifecycle {
-    prevent_destroy = true
-  }
+  # lifecycle {
+  #   prevent_destroy = true
+  # }
 }
 
 resource "aws_s3_bucket_versioning" "versioning_config-bucket" {

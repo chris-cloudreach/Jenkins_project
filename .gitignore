@@ -6,6 +6,9 @@ terraform*
 .DS_Store
 *.json
 *.txt
+*.pem
+*.jar
+
 
 
 
