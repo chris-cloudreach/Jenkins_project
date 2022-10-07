@@ -16,4 +16,4 @@ private_a_cidr = "10.0.21.0/24"
 # Instances
 keypair_name        = "ta-lab-key"
 my_ip               = "86.15.241.215" #"86.15.241.215"
-SlaveServerPublicip = "54.246.154.246" # REPLACE WITH IP OF SLAVE NODE
+SlaveServerPublicip = "54.195.130.104" # REPLACE WITH IP OF SLAVE NODE
