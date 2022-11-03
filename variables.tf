@@ -87,4 +87,3 @@ variable "rotation_enabled" {
 variable "kms_alias" {
   default = "CWLogKey"
 }
-

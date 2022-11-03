@@ -9,7 +9,7 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    
+
     <style>
      .wordmark {
         margin-bottom: -30px;
@@ -51,12 +51,12 @@ input:valid {
     <div class="App-header">
       <h1>Provide Landing Zone Details</h1>
     </div>
-    
+
 
     <!-- Main form -->
   <div class="card">
     <div class="card-body">
-    
+
     <form method="POST">
       <div class="form-group">
         <label for="email">Customer Email</label>
@@ -67,32 +67,32 @@ input:valid {
       <div class="form-group">
         <label for="name">Company name</label>
         <input type="name" class="form-control" id="customername"  placeholder="Only small letters, numbers and hyphen allowed (no spaces)" required pattern="^[a-z0-9-A-Z]*$">
-      </div> 
+      </div>
 
       <div class="form-group">
         <label for="name">AFT Account</label>
         <input type="name" class="form-control" id="aft_acct" placeholder="Enter 12-digit AFT AWS Account Number" required pattern="^[0-9]{12}$">
-      </div> 
+      </div>
 
       <div class="form-group">
         <label for="name">Sharedservices Account</label>
         <input type="name" class="form-control" id="AccountNumber" placeholder="Enter 12-digit Sharedservices AWS Account Number" required pattern="^[0-9]{12}$">
-      </div>   
+      </div>
 
       <div class="form-group">
         <label for="name">CIDR</label>
         <input type="name" class="form-control" id="cidr"  placeholder="Enter VPC CIDR. E.g. 10.0.0.0/16" required pattern="^(([0-9]){1,3}\.){3}[0-9]{1,3}\/[1-2][0-8]$">
-      </div> 
+      </div>
 
       <div class="form-group">
         <label for="name">Whitelist CIDR</label>
         <input type="name" class="form-control" id="Whitelist"  placeholder="If multiple CIDRs, separate them by commas (no spaces allowed) E.g. 10.0.0.0/8,10.0.0.0/9,192.10.8.0/16" required pattern="^((([0-9]){1,3}\.){3}[0-9]{1,3}\/([0-9],|[1-2][0-8],)|(([0-9]){1,3}\.){3}[0-9]{1,3}\/([0-9]|[1-2][0-8])){1,}$">
-      </div> 
+      </div>
       <!-- ^(([0-9]){1,3}\.){3}[0-9]{1,3}\/[1-2][0-8]$ -->
       <div class="form-group">
         <label for="name">Deployment Region</label>
         <input type="name" class="form-control" id="region" placeholder="Only small letters and hyphen allowed E.g. us-east-1" required pattern="^(us|eu|ap|ca|me|sa)-[a-z]*-[1-3]{1}$">
-      </div> 
+      </div>
 
       <div class="form-group">
         <label for="name">On-prem Gateway IP</label>
@@ -111,7 +111,7 @@ input:valid {
       const form = document.querySelector('form');
       const submitResponse = document.querySelector('#response');
       const formURL = 'https://zg15cycyjb.execute-api.eu-west-1.amazonaws.com/Prod/submitForm';
-      
+
 
       form.onsubmit = e => {
         e.preventDefault();
@@ -139,7 +139,7 @@ input:valid {
             submitResponse.innerHTML = 'Form submitted. Success!';
             console.error(JSON.parse(response));
           }
-        };    
+        };
       };
     })();
   </script>
@@ -151,5 +151,3 @@ input:valid {
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
   </body>
 </html>
-
-

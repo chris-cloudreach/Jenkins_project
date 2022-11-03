@@ -17,9 +17,9 @@
 #   }
 
 #   server_side_encryption {
-#    enabled = true 
-#    // false -> use AWS Owned CMK 
-#    // true -> use AWS Managed CMK 
+#    enabled = true
+#    // false -> use AWS Owned CMK
+#    // true -> use AWS Managed CMK
 #    // true + key arn -> use custom key
 #   }
 
